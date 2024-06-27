@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="Player">
+        <div class="player fixed-bottom">
+			<audio id="audio" role="button" src="https://live.humorfm.by:8443/avtoradio">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="row mx-0" style="height: 60px">
+                <div class="col-2 d-flex align-items-center justify-content-end px-0" t-on-click="_onClick">
+                    <img id="audio_img" style="width:40px; height:40px; object-fit: cover;"
+                         src="/web/image?model=station&amp;field=favicon&amp;id=10514"/>
+                </div>
+                <div class="col-8 d-flex align-items-center" t-on-click="_onClick">
+                    <h5 id="audio_name"/>
+                </div>
+                <div class="col-2 d-flex align-items-center">
+                <i id="pause" class="fa fa-pause"
+                   onclick="audio.pause(); pause.style.display = 'none'; play.style.display = 'block'"
+                   style="font-size:30px; display: none;"
+                   role="img"/>
+                    <i id="play" class="fa fa-lg fa-play"
+                       onclick="audio.play(); play.style.display = 'none'; pause.style.display = 'block'"
+                       style="font-size:30px;"
+                       role="img"/>
+                </div>
+            </div>
+		</div>
+    </t>
+
+    <t t-name="radio.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
+	    <xpath expr="//NavBar" position="after">
+	    	<Player/>
+	    </xpath>
+	</t>
+</templates>

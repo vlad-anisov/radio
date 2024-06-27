@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="station_form" model="ir.ui.view">
+        <field name="name">station.form</field>
+        <field name="model">station</field>
+        <field name="arch" type="xml">
+            <form class="pt-0">
+                <script>
+                    $('.modal-footer').css({'display': 'none'});
+                </script>
+                <header>
+                </header>
+                <group name="test2">
+                    <group>
+                        <field name="favicon" nolabel="1" colspan="2" readonly="1" widget="image"
+                               class="pt-0 w-100 text-center" options='{"size": [256, 256]}'/>
+                    </group>
+                    <group name="test">
+                        <field name="name" readonly="1"/>
+                        <field name="country_id" readonly="1" options="{'no_open': True}"/>
+                        <field name="state_id" readonly="1" options="{'no_open': True}"/>
+                        <field name="lang_ids" readonly="1" widget="many2many_tags"/>
+                        <field name="tags" readonly="1"/>
+                        <field name="votes" readonly="1"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="station_kanban" model="ir.ui.view">
+        <field name="name">station.kanban</field>
+        <field name="model">station</field>
+        <field name="arch" type="xml">
+            <kanban create="1" default_order="votes desc, id" action="change_station" type="object">
+                <field name="name"/>
+                <field name="url"/>
+                <field name="country_id"/>
+                <field name="state_id"/>
+                <field name="favicon"/>
+                <field name="lang_ids"/>
+                <field name="homepage"/>
+                <field name="tags"/>
+                <field name="votes"/>
+                <field name="is_favorite"/>
+                <templates>
+                    <t t-name="kanban-menu">
+                        <a role="menuitem" type="object" name="open_station" class="dropdown-item">
+                            <i class="fa fa-info-circle"/> Показать информацию о станции
+                        </a>
+                        <a role="menuitem" type="object" name="open_homepage" class="dropdown-item">
+                            <i class="fa fa-home"/> Открыть домашнюю страницу станции
+                        </a>
+                        <t t-if="record.is_favorite.raw_value">
+                            <a role="menuitem" type="object" name="remove_from_favorite" class="dropdown-item">
+                                <i class="fa fa-heart"/> Удалить из избранного
+                            </a>
+                        </t>
+                        <t t-else="">
+                            <a role="menuitem" type="object" name="add_to_favorite" class="dropdown-item">
+                                <i class="fa fa-heart-o"/> Добавить в избранное
+                            </a>
+                        </t>
+                    </t>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3 text-center">
+                                        <img t-att-src="kanban_image('station','favicon', record.id.raw_value)"
+                                             style="width:64px; height:64px; object-fit: cover;"/>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <h5>
+                                                <field name="name"/>
+                                            </h5>
+                                        </div>
+                                        <div class="row">
+                                            <field name="country_id"/>
+                                        </div>
+                                        <div class="row">
+                                            <field name="lang_ids"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!--    <record id="station_search" model="ir.ui.view">-->
+    <!--            <field name="name">station.search</field>-->
+    <!--            <field name="model">station</field>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <search>-->
+    <!--                    <field name="name"/>-->
+    <!--                    <field name="country_id"/>-->
+    <!--                    <field name="state_id"/>-->
+    <!--                    <field name="lang_ids"/>-->
+    <!--                    <field name="tags"/>-->
+    <!--                    <group expand="0" string="Group By">-->
+    <!--                        <filter name="group_by_country_id" context="{'group_by': 'country_id'}"/>-->
+    <!--                    </group>-->
+    <!--                </search>-->
+    <!--            </field>-->
+    <!--        </record>-->
+
+    <record id="station_action" model="ir.actions.act_window">
+        <field name="name">Все станции</field>
+        <field name="res_model">station</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="limit">1000</field>
+    </record>
+
+    <record id="station_local_action" model="ir.actions.act_window">
+        <field name="name">Местные</field>
+        <field name="res_model">station</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban</field>
+        <field name="limit">1000</field>
+        <field name="context">{"country_filter": True}</field>
+    </record>
+
+    <record id="station_favorite_action" model="ir.actions.act_window">
+        <field name="name">Избранные</field>
+        <field name="res_model">station</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban</field>
+        <field name="limit">1000</field>
+        <field name="domain">[("user_ids", "in", uid)]</field>
+    </record>
+
+    <record id="station_listened_action" model="ir.actions.act_window">
+        <field name="name">Прослушанные</field>
+        <field name="res_model">station</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban</field>
+        <field name="limit">1000</field>
+        <field name="context">{"listened_filter": True}</field>
+    </record>
+
+    <menuitem id="radio_root_menu" name="Радио" action="station_action" sequence="20"
+              web_icon="radio,static/description/icon.png"/>
+
+
+    <menuitem id="station_menu" name="Все станции" action="station_action" sequence="19"
+              parent="radio_root_menu"/>
+
+    <menuitem id="station_local_menu" name="Местные" action="station_local_action" sequence="22"
+              parent="radio_root_menu"/>
+
+    <menuitem id="station_favorite_menu" name="Избранные" action="station_favorite_action" sequence="23"
+              parent="radio_root_menu"/>
+
+    <menuitem id="station_listened_menu" name="Прослушанные" action="station_listened_action" sequence="24"
+              parent="radio_root_menu"/>
+
+</odoo>

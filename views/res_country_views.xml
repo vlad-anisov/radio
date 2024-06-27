@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="res_country_kanban" model="ir.ui.view">
+        <field name="name">res.country.kanban</field>
+        <field name="model">res.country</field>
+        <field name="arch" type="xml">
+            <kanban create="0" action="open_stations" type="object">
+                <field name="name"/>
+                <field name="image_url"/>
+                <field name="station_ids"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-3 text-center">
+                                        <img t-att-src="record.image_url.raw_value" class="border rounded-circle"
+                                             style="max-width:64px; height:64px; object-fit: cover;"/>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <h5>
+                                                <field name="name"/>
+                                            </h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto pe-1">
+                                                <t t-esc="record.station_ids.raw_value.length"/>
+                                            </div>
+                                            <div class="col px-0">
+                                                Stations
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center justify-content-end">
+                                        <i class="fa fa-chevron-right" style="font-size:15px;"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="res_country_action" model="ir.actions.act_window">
+        <field name="name">Страны</field>
+        <field name="res_model">res.country</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban</field>
+        <field name="limit">1000</field>
+        <field name="domain">[("station_ids", "!=", False)]</field>
+    </record>
+
+    <menuitem id="res_country_menu" name="По странам" action="res_country_action" sequence="20"
+              parent="radio_root_menu"/>
+
+</odoo>

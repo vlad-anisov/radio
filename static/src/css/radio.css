@@ -1,0 +1,106 @@
+/*.o_cp_pager{*/
+/*  display:none !important;*/
+/*}*/
+
+/*.o_kanban_record {*/
+/*    border-radius: 0 !important;*/
+/*}*/
+
+/*.container {*/
+/*    border-radius: 20px;*/
+/*}*/
+
+/*.o_main_navbar {*/
+/*    background-color: transparent;*/
+/*    !*backdrop-filter: blur(30px);*!*/
+/*    border: 0;*/
+/*    position: fixed;*/
+/*    !*left: 0;*!*/
+/*    right: 0;*/
+/*    z-index: 1030;*/
+/*    !*box-shadow: 0 5px 10px 3px rgba(0, 0, 0, .05);*!*/
+/*}*/
+
+
+
+
+/*!*.o_action_manager {*!*/
+/*!*    padding-top: 46px;*!*/
+/*!*}*!*/
+
+/*.o_control_panel {*/
+/*    background-color: transparent;*/
+/*    backdrop-filter: blur(30px);*/
+/*    border: 0;*/
+/*    top: 0px !important;*/
+/*    z-index: 10;*/
+/*    box-shadow: 0 5px 10px 3px rgba(0, 0, 0, .05);*/
+/*}*/
+
+/*.player {*/
+/*    background-color: transparent;*/
+/*    backdrop-filter: blur(30px);*/
+/*    z-index: 1030;*/
+/*    box-shadow: 0 5px 10px 3px rgba(0, 0, 0, .05);*/
+/*}*/
+
+/*.o_kanban_renderer .oe_kanban_card:focus-visible.oe_kanban_global_click, .o_kanban_renderer .oe_kanban_card:focus-visible.oe_kanban_global_click_edit, .o_kanban_renderer .oe_kanban_card:focus-visible .oe_kanban_global_click, .o_kanban_renderer .oe_kanban_card:focus-visible .oe_kanban_global_click_edit, .o_kanban_renderer .oe_kanban_card:focus-within.oe_kanban_global_click, .o_kanban_renderer .oe_kanban_card:focus-within.oe_kanban_global_click_edit, .o_kanban_renderer .oe_kanban_card:focus-within .oe_kanban_global_click, .o_kanban_renderer .oe_kanban_card:focus-within .oe_kanban_global_click_edit, .o_kanban_renderer .o_kanban_record:focus-visible.oe_kanban_global_click, .o_kanban_renderer .o_kanban_record:focus-visible.oe_kanban_global_click_edit, .o_kanban_renderer .o_kanban_record:focus-visible .oe_kanban_global_click, .o_kanban_renderer .o_kanban_record:focus-visible .oe_kanban_global_click_edit, .o_kanban_renderer .o_kanban_record:focus-within.oe_kanban_global_click, .o_kanban_renderer .o_kanban_record:focus-within.oe_kanban_global_click_edit, .o_kanban_renderer .o_kanban_record:focus-within .oe_kanban_global_click, .o_kanban_renderer .o_kanban_record:focus-within .oe_kanban_global_click_edit {*/
+/*     outline: thin solid rgba(255, 0, 0, 0) !important;*/
+/*}*/
+
+/*.modal {*/
+/*    animation: 0.25s show ease;*/
+/*}*/
+
+/*@keyframes show {*/
+/*  from { opacity: 0; }*/
+/*  to { opacity: 1; }*/
+/*}*/
+
+/*.o_form_nosheet {*/
+/*    --formView-sheet-padding-y: 0px !important;*/
+/*    !*--formView-sheet-padding-x: 0px !important;*!*/
+/*}*/
+/*.o_form_statusbar {*/
+/*    margin-bottom: 0px !important;*/
+/*}*/
+
+/*.o_action_manager{*/
+/*    padding-bottom: 60px !important;*/
+/*}*/
+
+/*.o_wrap_field{*/
+/*    margin-bottom: 0px!important;*/
+/*}*/
+
+/*.o_menu_toggle_icon{*/
+/*    display: none;*/
+/*}*/
+
+/*!*.o_menu_systray {*!*/
+/*!*  margin-left: 0 !important;*!*/
+/*!*}*!*/
+
+/*.o_filter_menu {*/
+/*    display: none;*/
+/*}*/
+/*.o_add_custom_group_menu {*/
+/*    display: none;*/
+/*}*/
+/*.o_favorite_menu{*/
+/*    display: none;*/
+/*}*/
+/*.o_cp_searchview.o-dropdown{*/
+/*    display: none;*/
+/*}*/
+
+/*.o_control_panel_navigation {*/
+/*    display: none !important;*/
+/*}*/
+/*.o_control_panel_breadcrumbs {*/
+/*    padding-top: 5px;*/
+/*}*/
+
+/*[name="page_account_security"]{*/
+/*    display: none;*/
+/*}*/
